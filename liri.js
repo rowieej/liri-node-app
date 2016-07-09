@@ -49,6 +49,7 @@ function getTweets () {
 
 function spotifyIt (song) {
   var songTitle;
+  //if user doesn't put in a song title, show whats my name again
     if (songTitle === "") {
       console.log("what’s my age again");
     } 
@@ -94,16 +95,17 @@ function getMovie(movie) {
       console.log("Language: " + movieDetails.Language);
       console.log("Plot: " + movieDetails.Plot);
       console.log("Actors: " + movieDetails.Actors);
-      }
+    }
   });
 }
+
 
 function doFile () {
   fs.readFile("./random.txt", "utf8", (err, data) => {
     data = data.replace(/\n/g, ',').split(",");
-    for (var i = 0; i < data.length; i += 2) {
-      var sendData = [data[i], data[i+1]];
-      commands(sendData);
-    }
+      for (var i = 0; i < data.length; i += 2) {
+        var sendData = [data[i], data[i+1]];
+        commands(sendData);
+      }
   });
 }
