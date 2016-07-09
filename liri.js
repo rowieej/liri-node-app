@@ -49,12 +49,13 @@ function getTweets () {
 
 function spotifyIt (song) {
   var songTitle;
-  if (songTitle === "") {
-    console.log("what’s my age again");
-  } else {
-    songTitle = song[1];
-    for (var i = 2; i < song.length; i++) {
-      songTitle += " " + song[i];
+    if (songTitle === "") {
+      console.log("what’s my age again");
+    } 
+    else {
+      songTitle = song[1];
+      for (var i = 2; i < song.length; i++) {
+        songTitle += " " + song[i];
     }
   }
 
@@ -71,21 +72,21 @@ function spotifyIt (song) {
 function getMovie(movie) {
   var movieTitle;
 //if user doesn't put in a movie title, display mr nobody
-  if (movie === "") {
-    movieTitle = "Mr.Nobody";
-    console.log(movieTitle);
-  } else {
-    movieTitle = movie[1];
-    for (var i = 2; i < movie.length; i++) {
-      movieTitle += " " + movie[i];
+    if (movie === "") {
+      movieTitle = "Mr.Nobody";
+      console.log(movieTitle);
+    } 
+    else {
+      movieTitle = movie[1];
+      for (var i = 2; i < movie.length; i++) {
+        movieTitle += " " + movie[i];
+      }
     }
-  }
-  
+  //print out response  
   var url = "http://www.omdbapi.com/?t=" + movieTitle;
   request(url, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var movieDetails = JSON.parse(body);
-      console.log("*****************************************************");
       console.log("Title: " + movieDetails.Title);
       console.log("Year: " + movieDetails.Year);
       console.log("IMDB Rating: " + movieDetails.imdbRating);
@@ -93,7 +94,6 @@ function getMovie(movie) {
       console.log("Language: " + movieDetails.Language);
       console.log("Plot: " + movieDetails.Plot);
       console.log("Actors: " + movieDetails.Actors);
-      console.log("*****************************************************");
       }
   });
 }
@@ -103,7 +103,7 @@ function doFile () {
     data = data.replace(/\n/g, ',').split(",");
     for (var i = 0; i < data.length; i += 2) {
       var sendData = [data[i], data[i+1]];
-      getCommand(sendData);
+      commands(sendData);
     }
   });
 }
