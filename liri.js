@@ -40,9 +40,14 @@ function getTweets () {
     access_token_secret: keys.twitterKeys.access_token_secret
   });
 // get last 20 tweets
-  client.get('statuses/user_timeline', {screen_name: 'rowie_j'},  function(response){
+  client.get('statuses/user_timeline', params,  function(error, tweets,response){
+    if(!error){
+      console.log(error);
+    }
+
     for (var i = 0; i < 20; i++) {
-      console.log(response[i]);   
+      console.log(tweets[i].text);
+      console.log(tweets[i].created_at);   
     }
   });
 }
@@ -73,7 +78,7 @@ function spotifyIt (song) {
 function getMovie(movie) {
   var movieTitle;
 //if user doesn't put in a movie title, display mr nobody
-    if (movie === "") {
+    if (movie != null) {
       movieTitle = "Mr.Nobody";
       console.log(movieTitle);
     } 
@@ -86,6 +91,7 @@ function getMovie(movie) {
   //print out response  
   var url = "http://www.omdbapi.com/?t=" + movieTitle;
   request(url, function (error, response, body) {
+    
     if (!error && response.statusCode == 200) {
       var movieDetails = JSON.parse(body);
       console.log("Title: " + movieDetails.Title);
